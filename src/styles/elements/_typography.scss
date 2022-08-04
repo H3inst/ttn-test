@@ -1,0 +1,11 @@
+.typography {
+    margin: 0;
+
+    @at-root #{&}__display {
+        font-size: $font_size_huge;
+    }
+    
+    @at-root #{&}__normal {
+        font-size: $font_size_normal;
+    }
+}

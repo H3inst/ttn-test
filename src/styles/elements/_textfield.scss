@@ -1,0 +1,12 @@
+.textfield {
+    padding: 10px 12px;
+    border: 1px solid lighten($primary_color, $amount: 50%);
+    outline: 0;
+    border-radius: $border_radius;
+    font-size: $font_size_normal;
+    color: #777;
+
+    &:focus {
+        border-color: $primary_color;
+    }
+}

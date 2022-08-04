@@ -1,0 +1,48 @@
+.bg-primary {
+    background-color: $primary_color  !important;
+}
+
+.bg-primary_light {
+    background-color: $primary_color_light  !important;
+}
+
+.text-primary {
+    color: $primary_color  !important;
+}
+
+.text-muted {
+    color: rgba($color: #000000, $alpha: 0.5);
+}
+
+.text-white {
+    color: $white_color  !important;
+}
+
+.text-black {
+    color: $black_color  !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.fw-bolder {
+    font-weight: $font_weight_black  !important;
+}
+
+.fw-bold {
+    font-weight: $font_weight_bold;
+}
+.fw-semibold {
+    font-weight: $font_weight_semibold;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+}
+
+.image-responsive {
+    max-width: 100%;
+    height: auto;
+}

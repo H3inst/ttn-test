@@ -1,0 +1,25 @@
+.button {
+    border: 0;
+    background-color: rgba($primary_color, $alpha: 0.2);
+    border-radius: $border_radius;
+    color: $primary_color;
+    padding: 10px 12px;
+    font-weight: $font_weight_semibold;
+    font-size: $font_size_normal;
+    cursor: pointer;
+    user-select: none;
+    outline: 0;
+
+    @at-root #{&}__primary {
+        color: $white_color;
+        background-color: $primary_color;
+
+        &:active {
+            background-color: darken($primary_color, 5%);
+        }
+    }
+
+    @at-root #{&}__large {
+        font-size: $font_size_large;
+    }
+}
