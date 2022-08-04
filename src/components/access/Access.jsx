@@ -42,6 +42,7 @@ function Access() {
               className="textfield"
               name="user_id"
               onChange={handleInputChange}
+              autoComplete="off"
               required
             />
           </div>

@@ -4,6 +4,10 @@
     @at-root #{&}__display {
         font-size: $font_size_huge;
     }
+
+    @at-root #{&}__large {
+        font-size: $font_size_large;
+    }
     
     @at-root #{&}__normal {
         font-size: $font_size_normal;

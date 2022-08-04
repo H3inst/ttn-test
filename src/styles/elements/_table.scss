@@ -1,0 +1,22 @@
+.table {
+    border-collapse: collapse;
+    border: 0;
+    white-space: nowrap;
+
+    thead tr th {
+        color: $light_color_30;
+        font-size: $font_size_normal;
+        text-align: left;
+        padding-bottom: 20px;
+        min-width: 150px;
+    }
+    
+    tbody tr td {
+        font-size: $font_size_normal;
+        text-align: left;
+        color: $primary_color;
+        padding: 20px 0px;
+        min-width: 150px;
+        max-width: 200px;
+    }
+}

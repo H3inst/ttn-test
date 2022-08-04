@@ -1,0 +1,10 @@
+.card {
+    padding: 30px;
+    background-color: $white_color;
+    border-radius: $border_radius * 2;
+    box-shadow: $box_shadow;
+
+    @at-root #{&}__fluid {
+        width: 100%;
+    }
+}

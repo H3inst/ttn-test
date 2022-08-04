@@ -1,6 +1,6 @@
 .button {
     border: 0;
-    background-color: rgba($primary_color, $alpha: 0.2);
+    background-color: rgba($primary_color, $alpha: 0.1);
     border-radius: $border_radius;
     color: $primary_color;
     padding: 10px 12px;
@@ -9,6 +9,10 @@
     cursor: pointer;
     user-select: none;
     outline: 0;
+
+    &:active {
+        background-color: lighten($primary_color, $amount: 70%);
+    }
 
     @at-root #{&}__primary {
         color: $white_color;

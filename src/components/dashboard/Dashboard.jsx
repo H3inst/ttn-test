@@ -8,9 +8,9 @@ function Dashboard() {
     return (
       <div className="dashboard-layout">
         <Topbar />
-        <div className="flex flex-1">
+        <div className="flex flex-1" style={{ overflow: 'hidden' }}>
           <Menubar />
-          <main className="flex-1">
+          <main className="flex-1 pl-50 pr-50 pt-30 pb-50" style={{ overflow: 'auto' }}>
             <Outlet />
           </main>
         </div>
