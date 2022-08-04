@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import LoginSvg from '../../assets/access/login.svg';
 import data from '../../data/access.json';
 import { useForm } from '../../hooks/useForm';
@@ -10,17 +12,15 @@ const DEFAULT_VALUES = {
 function Access() {
   const { handleInputChange, inputValues } = useForm(DEFAULT_VALUES);
 
-
   const handleSubmitLogin = (event) => {
     event.preventDefault();
     let { user_id, user_password } = inputValues;
 
     if (user_id !== data.user_identification || user_password !== data.user_password) {
-      console.log('El usuario o contraseña es incorrecto');
+      toast.error('El usuario o contraseña es incorrecto');
       return;
     }
-
-    console.log('logeado papá')
+    localStorage.setItem('authenticated', true);
   };
 
   const render = () => {
@@ -59,7 +59,12 @@ function Access() {
           </button>
         </form>
 
-        <img src={LoginSvg} className="image-responsive ml-50" alt="login" width="50%" />
+        <img
+          src={LoginSvg}
+          className="image-responsive ml-50"
+          alt="login"
+          width="50%"
+        />
       </section>
     );
   };
