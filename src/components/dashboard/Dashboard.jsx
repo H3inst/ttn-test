@@ -10,7 +10,7 @@ function Dashboard() {
         <Topbar />
         <div className="flex flex-1" style={{ overflow: 'hidden' }}>
           <Menubar />
-          <main className="flex-1 pl-50 pr-50 pt-30 pb-50" style={{ overflow: 'auto' }}>
+          <main className="dashboard-main">
             <Outlet />
           </main>
         </div>
