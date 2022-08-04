@@ -1,7 +1,8 @@
 import { toast } from 'react-toastify';
 
-import LoginSvg from '../../assets/access/login.svg';
 import data from '../../data/access.json';
+import LoginSvg from '../../assets/access/login.svg';
+
 import { useForm } from '../../hooks/useForm';
 
 const DEFAULT_VALUES = {
@@ -21,6 +22,8 @@ function Access() {
       return;
     }
     localStorage.setItem('authenticated', true);
+    toast.success('Sesión iniciada');
+    window.location.reload();
   };
 
   const render = () => {
