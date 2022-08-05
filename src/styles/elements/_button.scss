@@ -3,7 +3,7 @@
     background-color: rgba($primary_color, $alpha: 0.1);
     border-radius: $border_radius;
     color: $primary_color;
-    padding: 10px 12px;
+    padding: 10px 30px;
     font-weight: $font_weight_semibold;
     font-size: $font_size_normal;
     cursor: pointer;
@@ -21,6 +21,10 @@
         &:active {
             background-color: darken($primary_color, 5%);
         }
+    }
+
+    @at-root #{&}__medium {
+        font-size: $font_size_medium;
     }
 
     @at-root #{&}__large {

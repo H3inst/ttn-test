@@ -1,17 +1,22 @@
 import { useState } from 'react';
 
 export function useForm(values = {}) {
-    const [inputValues, setInputValues] = useState(values);
+  const [inputValues, setInputValues] = useState(values);
 
-    const handleInputChange = ({ target }) => {
-        setInputValues({
-            ...inputValues,
-            [target.name]: target.value
-        });
-    };
+  const handleInputChange = ({ target }) => {
+    setInputValues({
+      ...inputValues,
+      [target.name]: target.value
+    });
+  };
 
-    return {
-        handleInputChange,
-        inputValues
-    };
+  const setInputs = (inputs = {}) => {
+    setInputValues(prev => ({ ...prev, ...inputs }));
+  };
+
+  return {
+    handleInputChange,
+    setInputs,
+    inputValues
+  };
 }

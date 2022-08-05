@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-function Dropdown({ width, placeholder, options = [], onChange = () => { } }) {
+function Dropdown({ className, width, placeholder, options = [], onChange = () => { } }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
   const wrapperRef = useRef(null);
@@ -21,15 +21,27 @@ function Dropdown({ width, placeholder, options = [], onChange = () => { } }) {
 
   const handleSetValue = (item) => {
     setSelectedValue(item);
-    onChange(item);
+    onChange(item.toLowerCase());
     setIsMenuOpen(false);
+  };
+
+  const renderMenuOptions = (item, index) => {
+    return (
+      <div
+        key={index}
+        className="dropdown-list__item"
+        onClick={() => handleSetValue(item)}
+      >
+        {item}
+      </div>
+    );
   };
 
   const render = () => {
     return (
       <div
-        className="w-100"
-        style={{ position: 'relative' }}
+        className={className}
+        style={{ position: 'relative', width }}
         ref={wrapperRef}
       >
         <div
@@ -37,19 +49,11 @@ function Dropdown({ width, placeholder, options = [], onChange = () => { } }) {
           style={{ width }}
         >
           <span>{selectedValue || placeholder}</span>
-          <i className="ms-Icon ms-Icon--ChevronDown"></i>
+          <i className="fa-solid fa-chevron-down"></i>
         </div>
         {isMenuOpen && (
           <div className="dropdown-list">
-            {options.length ? options.map((item, index) => (
-              <div
-                key={index}
-                className="dropdown-list__item"
-                onClick={() => handleSetValue(item)}
-              >
-                {item}
-              </div>
-            )) : (
+            {options.length ? options.map(renderMenuOptions) : (
               <div className="dropdown-list__item">
                 No data
               </div>

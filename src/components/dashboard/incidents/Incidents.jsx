@@ -1,16 +1,64 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import CreateIncident from './create/Create';
 
 function Incidents() {
+  const [registers, setRegisters] = useState(
+    () => JSON.parse(localStorage.getItem('registers')) || []
+  );
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('registers', JSON.stringify(registers));
+  }, [registers]);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleCloseModa = () => {
+  const handleCloseModal = () => {
     setIsModalOpen(false);
-  }
+  };
+
+  const renderItem = (user, index) => {
+    return (
+      <tr key={index}>
+        <td>{user.user_name}</td>
+        <td>{user.position}</td>
+        <td>{user.campus}</td>
+        <td>{user.patient_name}</td>
+        <td>{user.incident_date}</td>
+        <td>{user.description}</td>
+        <td style={{ textAlign: 'right' }}>
+          <i class="fa-solid fa-ellipsis-vertical"></i>
+        </td>
+      </tr>
+    );
+  };
+
+  const renderTable = () => {
+    return (
+      <table className="table w-100">
+        <thead>
+          <tr>
+            <th>Nombre reportante</th>
+            <th>Cargo</th>
+            <th>Sede</th>
+            <th>Paciente</th>
+            <th>Fecha incidente</th>
+            <th>Descripción incidente</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {registers.length ? registers.map(renderItem) : (
+            <tr>
+              <td align="center" colSpan={6}>No hay datos disponibles...</td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    );
+  };
 
   const render = () => {
     return (
@@ -27,35 +75,15 @@ function Incidents() {
             </div>
             <div className="card card__fluid mt-30">
               <div style={{ overflowX: 'auto' }}>
-                <table className="table w-100">
-                  <thead>
-                    <tr>
-                      <th>Nombre reportante</th>
-                      <th>Cargo</th>
-                      <th>Sede</th>
-                      <th>Paciente</th>
-                      <th>Fecha incidente</th>
-                      <th>Descripción incidente</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {[1, 2, 3, 4, 5, 6, 7, 8].map((e) => (
-                      <tr key={e}>
-                        <td>Luis Perez Ferrer</td>
-                        <td>Auxiliar</td>
-                        <td>Foca Norte</td>
-                        <td>Ana Gutierrez Florez</td>
-                        <td>11/04/2022 10:30 a.m</td>
-                        <td>El paciente se cayó de una silla y se partió el pescuezo</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                {renderTable()}
               </div>
             </div>
           </Fragment>
         ) : (
-          <CreateIncident onClose={handleCloseModa} />
+          <CreateIncident
+            onRegister={setRegisters}
+            onClose={handleCloseModal}
+          />
         )}
       </Fragment>
     );

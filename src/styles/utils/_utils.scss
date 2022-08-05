@@ -2,12 +2,20 @@
     background-color: $primary_color  !important;
 }
 
+.bg-secondary {
+    background-color: $secondary_color  !important;
+}
+
 .bg-primary_light {
     background-color: $primary_color_light  !important;
 }
 
 .text-primary {
     color: $primary_color  !important;
+}
+
+.text-secondary {
+    color: $secondary_color  !important;
 }
 
 .text-muted {
@@ -33,8 +41,26 @@
 .fw-bold {
     font-weight: $font_weight_bold;
 }
+
 .fw-semibold {
     font-weight: $font_weight_semibold;
+}
+
+.circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: $light_color_20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $light_color_20;
+    font-size: $font_size_normal;
+
+    @at-root #{&}-active {
+        background-color: $secondary_color;
+        color: white;
+    }
 }
 
 .divider {
