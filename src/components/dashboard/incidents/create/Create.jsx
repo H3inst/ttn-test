@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { useForm } from '../../../../hooks/useForm';
+
 import Dropdown from '../../../elements/Dropdown';
+import Stepper from '../stepper/Stepper';
+
+import { useForm } from '../../../../hooks/useForm';
 
 const DEFAULT_FORM_FIELDS = {
   user_name: '',
@@ -13,7 +16,7 @@ const DEFAULT_FORM_FIELDS = {
 
 function CreateIncident({ onClose, onRegister }) {
   const [stepperPosition, setStepperPosition] = useState(1);
-  const { handleInputChange, inputValues, setInputs } = useForm(DEFAULT_FORM_FIELDS);
+  const { handleInputChange, inputValues = {}, setInputs } = useForm(DEFAULT_FORM_FIELDS);
 
   const handleCloseModal = () => {
     if (stepperPosition > 1) {
@@ -40,39 +43,6 @@ function CreateIncident({ onClose, onRegister }) {
     onClose();
   };
 
-  const renderStepper = () => {
-    return (
-      <div className="stepper">
-        <div className="stepper-item">
-          <div className={`circle ${stepperPosition > 0 && "circle-active"}`}>
-            <i className="fa-solid fa-check"></i>
-          </div>
-          <p className={`typography typography__normal fw-semibold ${stepperPosition > 0 && "text-secondary"}`}>
-            Información básica
-          </p>
-        </div>
-        <div className={`stepper-line ${stepperPosition > 1 && "bg-secondary"}`}></div>
-        <div className="stepper-item">
-          <div className={`circle ${stepperPosition > 1 && "circle-active"}`}>
-            <i className="fa-solid fa-check"></i>
-          </div>
-          <p className={`typography typography__normal fw-semibold ${stepperPosition > 1 && "text-secondary"}`}>
-            Información captura
-          </p>
-        </div>
-        <div className={`stepper-line ${stepperPosition > 2 && "bg-secondary"}`}></div>
-        <div className="stepper-item">
-          <div className={`circle ${stepperPosition > 2 && "circle-active"}`}>
-            <i className="fa-solid fa-check"></i>
-          </div>
-          <p className={`typography typography__normal fw-semibold ${stepperPosition > 2 && "text-secondary"}`}>
-            Descripción de incidente
-          </p>
-        </div>
-      </div>
-    );
-  };
-
   const renderForms = () => {
     return (
       <form>
@@ -87,6 +57,7 @@ function CreateIncident({ onClose, onRegister }) {
                 name="user_name"
                 onChange={handleInputChange}
                 value={inputValues.user_name}
+                required
               />
               <input
                 type="text"
@@ -95,6 +66,7 @@ function CreateIncident({ onClose, onRegister }) {
                 name="position"
                 onChange={handleInputChange}
                 value={inputValues.position}
+                required
               />
             </div>
             <div className="flex mt-20">
@@ -124,6 +96,7 @@ function CreateIncident({ onClose, onRegister }) {
                 name="incident_date"
                 onChange={handleInputChange}
                 value={inputValues.incident_date}
+                required
               />
             </div>
             <div className="flex mt-20">
@@ -164,6 +137,7 @@ function CreateIncident({ onClose, onRegister }) {
                 name="patient_name"
                 onChange={handleInputChange}
                 value={inputValues.patient_name}
+                required
               />
               <div className="flex w-100">
                 <Dropdown
@@ -226,6 +200,7 @@ function CreateIncident({ onClose, onRegister }) {
               name="description"
               onChange={handleInputChange}
               rows={5}
+              required
             />
             <textarea
               type="text"
@@ -255,7 +230,7 @@ function CreateIncident({ onClose, onRegister }) {
           </h1>
         </div>
         <div className="card mt-30" style={{ width: '100%', maxWidth: '700px' }}>
-          {renderStepper()}
+          <Stepper step={stepperPosition} />
         </div>
 
         <div className="card mt-30" style={{ width: '100%', maxWidth: '700px' }}>

@@ -1,7 +1,9 @@
 import { Fragment, useEffect, useState } from 'react';
 import CreateIncident from './create/Create';
+import Details from './details/Details';
 
 function Incidents() {
+  const [openDialog, setOpenDialog] = useState(false);
   const [registers, setRegisters] = useState(
     () => JSON.parse(localStorage.getItem('registers')) || []
   );
@@ -19,6 +21,14 @@ function Incidents() {
     setIsModalOpen(false);
   };
 
+  const handleOpenMenu = () => {
+    setOpenDialog(true);
+  }
+
+  const handleCloseMenu = () => {
+    setOpenDialog(false);
+  }
+
   const renderItem = (user, index) => {
     return (
       <tr key={index}>
@@ -28,9 +38,9 @@ function Incidents() {
         <td>{user.patient_name}</td>
         <td>{user.incident_date}</td>
         <td>{user.description}</td>
-        <td style={{ textAlign: 'right' }}>
-          <div className="icon-button">
-            <i class="fa-solid fa-ellipsis-vertical"></i>
+        <td style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <div className="icon-button" onClick={handleOpenMenu}>
+            <i className="fa-solid fa-ellipsis-vertical"></i>
           </div>
         </td>
       </tr>
@@ -76,6 +86,9 @@ function Incidents() {
               </button>
             </div>
             <div className="card card__fluid mt-30">
+              <div className="filter-bar">
+                <i className="fa-solid fa-chevron-down"></i>
+              </div>
               <div style={{ overflowX: 'auto' }}>
                 {renderTable()}
               </div>
@@ -87,6 +100,11 @@ function Incidents() {
             onClose={handleCloseModal}
           />
         )}
+        <Details
+          isOpen={openDialog}
+          onClose={handleCloseMenu}
+          width={600}
+        />
       </Fragment>
     );
   };
