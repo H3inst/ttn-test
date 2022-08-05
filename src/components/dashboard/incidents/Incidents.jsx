@@ -29,7 +29,9 @@ function Incidents() {
         <td>{user.incident_date}</td>
         <td>{user.description}</td>
         <td style={{ textAlign: 'right' }}>
-          <i class="fa-solid fa-ellipsis-vertical"></i>
+          <div className="icon-button">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </div>
         </td>
       </tr>
     );
