@@ -31,3 +31,17 @@
         font-size: $font_size_large;
     }
 }
+
+.icon-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $primary_color_light;
+    }
+}
