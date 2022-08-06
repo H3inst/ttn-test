@@ -3,7 +3,7 @@
 This is an frontend challenge by the TTN Company for a frontend position.
 
 ## Demo
-See [demo here](ttn-test.netlify.app)
+See [demo here](https://ttn-test.netlify.app)
 - Username: admin
 - Password: admin
 
