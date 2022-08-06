@@ -42,6 +42,6 @@
     cursor: pointer;
 
     &:hover {
-        background-color: $primary_color_light;
+        background-color: rgba($primary_color, $alpha: 0.1);
     }
 }

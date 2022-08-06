@@ -79,9 +79,19 @@
     border-radius: $border_radius;
     background-color: $primary_color_light;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    flex-flow: column;
     margin-bottom: 20px;
     padding: 0 30px;
     font-size: $font_size_normal;
+    padding: 5px 20px 20px 20px;
+    overflow: hidden;
+    transition: .2s all ease-out;
+
+    input[type="text"] {
+        width: 180px;
+    }
+
+    @at-root #{&}__opened {
+        height: 210px;
+    }
 }

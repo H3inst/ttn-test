@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
+import Dropdown from '../../elements/Dropdown';
 import CreateIncident from './create/Create';
 import Details from './details/Details';
 
@@ -7,6 +8,7 @@ function Incidents() {
   const [registers, setRegisters] = useState(
     () => JSON.parse(localStorage.getItem('registers')) || []
   );
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
@@ -23,11 +25,16 @@ function Incidents() {
 
   const handleOpenMenu = () => {
     setOpenDialog(true);
-  }
+  };
 
   const handleCloseMenu = () => {
     setOpenDialog(false);
-  }
+  };
+
+  const handleToggleFilter = () => {
+    setIsFilterOpen(prev => !prev);
+  };
+
 
   const renderItem = (user, index) => {
     return (
@@ -72,6 +79,67 @@ function Incidents() {
     );
   };
 
+  const renderFilterBar = () => {
+    return (
+      <div className={`filter-bar ${isFilterOpen && "filter-bar__opened"}`}>
+        <div className="flex justify-end w-100">
+          <div className="icon-button" onClick={handleToggleFilter}>
+            {!isFilterOpen ? (
+              <i className="fa-solid fa-chevron-down"></i>
+            ) : (
+              <i className="fa-solid fa-chevron-up"></i>
+            )}
+          </div>
+        </div>
+        <div className="flex align-center" style={{ flexWrap: 'wrap' }}>
+          <input
+            type="text"
+            className="textfield m-5"
+            placeholder="Fecha inicio"
+          />
+          <input
+            type="text"
+            className="textfield m-5"
+            placeholder="Fecha fin"
+          />
+          <Dropdown
+            width="180px"
+            placeholder="Estado"
+          />
+          <input
+            type="text"
+            className="textfield m-5"
+            placeholder="No. programación"
+          />
+          <input
+            type="text"
+            className="textfield m-5"
+            placeholder="ID Paciente"
+          />
+          <Dropdown
+            className="m-5"
+            width="180px"
+            placeholder="Cirujano"
+          />
+          <Dropdown
+            width="180px"
+            placeholder="Tracking"
+          />
+          <Dropdown
+            className="m-5"
+            width="180px"
+            placeholder="Condición"
+          />
+          <input
+            type="text"
+            className="textfield m-5"
+            placeholder="Recuento"
+          />
+        </div>
+      </div>
+    );
+  };
+
   const render = () => {
     return (
       <Fragment>
@@ -86,9 +154,7 @@ function Incidents() {
               </button>
             </div>
             <div className="card card__fluid mt-30">
-              <div className="filter-bar">
-                <i className="fa-solid fa-chevron-down"></i>
-              </div>
+              {renderFilterBar()}
               <div style={{ overflowX: 'auto' }}>
                 {renderTable()}
               </div>
