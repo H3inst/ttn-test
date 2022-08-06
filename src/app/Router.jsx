@@ -5,6 +5,7 @@ import routes from './constants/routes';
 import Access from '../components/access/Access';
 import Dashboard from '../components/dashboard/Dashboard';
 import Incidents from '../components/dashboard/incidents/Incidents';
+import Charts from '../components/dashboard/charts/Charts';
 
 function RootRouter() {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -33,7 +34,7 @@ function RootRouter() {
             ? <Dashboard />
             : <Navigate to={routes.access} />}
         >
-          <Route index element={<h1>Charts</h1>} />
+          <Route index element={<Charts />} />
           <Route path={routes.dashboardIncidents} element={<Incidents />} />
         </Route>
       </Routes>
